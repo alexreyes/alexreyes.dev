@@ -1,6 +1,36 @@
 
 $(document).ready(function () {
 
+    // 2022: 
+    fetch('https://book-list-api-v2.alex243.repl.co/?year=2022')
+    .then(response => {
+    return response.json()
+    })
+    .then(data => {
+        var total = data.length;
+        var percentDone = (total / 52)*100;
+        percentDone = Math.round(percentDone);
+
+        $('.2022').hide().append('<h2 class="year"> 2022 (' + total + ' total) </h2>').fadeIn(0);
+        
+        data.forEach(book => {
+            if (book) {
+                var link = book[1]
+
+                var bookTitle = book[0]
+
+                if (book != ""){ 
+                
+                    $('.displayList2022').hide().append('<p class = "indent"><a href = ' + link + ' target="_blank" class="no-underline">' + bookTitle + '</a></p>').fadeIn(0);
+                }
+            }
+        });
+    })
+    .catch(err => {
+        // Do something for an error here
+        console.log("error reading JSON")
+    })
+
     // 2021: 
     fetch('https://book-list-api-v2.alex243.repl.co/?year=2021')
     .then(response => {
