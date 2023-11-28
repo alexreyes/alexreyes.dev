@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>How I built a loft in my NYC apartment</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="bear-note-unique-identifier"
+      content="F6B0F277-43E8-4326-A659-B28AB991A676"
+    />
+    <meta name="created" content="2023-11-28T12:43:35-0500" />
+    <meta name="modified" content="2023-11-28T15:34:52-0500" />
+    <meta name="tags" content="" />
+    <meta name="last device" content="Alex’s MacBook Air" />
+  </head>
+  <style>
+    body {
+      --base-background-color: #ffffff;
+      --document-background-color: var(--base-background-color);
+    }
+
+    .document-wrapper {
+      /* Constants used to transform theme values to CSS */
+      --transform-line-height-factor: 1.17;
+
+      /* From template */
+      --base-text-color: #444444;
+      --base-text-secondary-color: #888888;
+      --base-text-tertiary-color: #d9d9d9;
+      --base-background-color: #ffffff;
+      --base-background-secondary-color: #f3f5f7;
+      --base-background-tertiary-color: #e4e5e6;
+      --base-stroke-color: #d9d9d9;
+      --base-stroke-secondary-color: #d9d9d9;
+      --base-accent-color: #dd4c4f;
+      --base-highlight-color: #d3ffa4;
+
+      --document-background-color: var(--base-background-color);
+      --document-text-color: var(--base-text-color);
+      --document-text-secondary-color: var(--base-text-secondary-color);
+      --document-text-light-color: var(--base-text-secondary-color);
+      --document-accent-color: var(--base-accent-color);
+      --document-cursor-color: var(--base-accent-color);
+      --document-link-color: var(--base-accent-color);
+      --document-list-marker-color: var(--base-accent-color);
+      --document-marker-color: var(--base-text-tertiary-color);
+      --document-selection-color: var(--base-selection-color);
+      --document-selection-inactive-color: var(
+        --base-background-tertiary-color
+      );
+      --document-text-font: "AvenirNext-Regular";
+      --document-text-size: 16px;
+      --document-line-height-multiplier: calc(
+        1.5 * var(--transform-line-height-factor)
+      );
+
+      --document-headers-text-color: var(--base-text-color);
+      --document-headers-font: "AvenirNext-Medium";
+      --document-headers-modular-scale: 1.125;
+      --document-headers-line-height-multiplier: calc(
+        1.3 * var(--transform-line-height-factor)
+      );
+      --document-headers-add-top-bottom-padding: 1;
+      --document-headers-padding-top-multiplier: 0.5;
+      --document-headers-padding-bottom-multiplier: 0.3;
+
+      --document-code-text-color: var(--base-text-color);
+      --document-code-border-color: var(--base-text-tertiary-color);
+      --document-code-background-color: var(--base-background-secondary-color);
+      --document-code-font: "Menlo-Regular";
+      --document-code-text-size-multiplier: 0.91;
+
+      --document-code-syntax-highlight-comment: #65798c;
+      --document-code-syntax-highlight-constant: #0095c9;
+      --document-code-syntax-highlight-number: #0095c9;
+      --document-code-syntax-highlight-string: #d12f1b;
+      --document-code-syntax-highlight-entity: #4a838b;
+      --document-code-syntax-highlight-keyword: #ad3da4;
+      --document-code-syntax-highlight-function: #4a838b;
+      --document-code-syntax-highlight-variable: #4a838b;
+
+      --document-task-background-color: var(--base-background-color);
+      --document-task-border-color: var(--base-text-secondary-color);
+      --document-task-check-color: var(--base-text-color);
+
+      --document-tag-background-color: var(--base-background-tertiary-color);
+      --document-tag-text-color: var(--base-text-color);
+      --document-tag-marker-color: var(--base-text-secondary-color);
+
+      --document-highlighter-background-color: var(--base-highlight-color);
+      --document-highlighter-text-color: var(--base-text-color);
+
+      --document-file-fold-color: var(--base-background-tertiary-color);
+      --document-file-background-color: var(--base-background-secondary-color);
+
+      --document-separator-border-color: var(--base-stroke-secondary-color);
+
+      --document-table-border-color: var(--base-stroke-secondary-color);
+      --document-table-cell-background-color: var(--base-background-color);
+      --document-table-cell-alternate-background-color: var(
+        --base-background-secondary-color
+      );
+    }
+
+    .document-wrapper,
+    body {
+      background-color: var(--document-background-color);
+    }
+    .document-wrapper h1.setext,
+    .document-wrapper h2.setext {
+      border-bottom: calc(2 * var(--document-hairline-width)) solid
+        var(--document-separator-border-color);
+      padding-bottom: 0.6em;
+    }
+    .document-wrapper
+      blockquote
+      blockquote
+      blockquote
+      blockquote
+      blockquote::before,
+    .document-wrapper blockquote blockquote blockquote::before,
+    .document-wrapper blockquote::before {
+      background-color: var(--document-list-marker-color);
+    }
+    .document-wrapper a:hover,
+    .document-wrapper mark {
+      text-decoration: inherit;
+    }
+    .document-wrapper td[data-alignment="1"],
+    .document-wrapper th {
+      text-align: left;
+    }
+    .document-wrapper :after,
+    .document-wrapper :before,
+    .document-wrapper a,
+    .document-wrapper abbr,
+    .document-wrapper acronym,
+    .document-wrapper address,
+    .document-wrapper applet,
+    .document-wrapper article,
+    .document-wrapper aside,
+    .document-wrapper audio,
+    .document-wrapper b,
+    .document-wrapper big,
+    .document-wrapper blockquote,
+    .document-wrapper canvas,
+    .document-wrapper caption,
+    .document-wrapper center,
+    .document-wrapper cite,
+    .document-wrapper code,
+    .document-wrapper dd,
+    .document-wrapper del,
+    .document-wrapper details,
+    .document-wrapper dfn,
+    .document-wrapper div,
+    .document-wrapper dl,
+    .document-wrapper dt,
+    .document-wrapper em,
+    .document-wrapper embed,
+    .document-wrapper fieldset,
+    .document-wrapper figcaption,
+    .document-wrapper figure,
+    .document-wrapper footer,
+    .document-wrapper form,
+    .document-wrapper h1,
+    .document-wrapper h2,
+    .document-wrapper h3,
+    .document-wrapper h4,
+    .document-wrapper h5,
+    .document-wrapper h6,
+    .document-wrapper header,
+    .document-wrapper hgroup,
+    .document-wrapper i,
+    .document-wrapper iframe,
+    .document-wrapper ins,
+    .document-wrapper kbd,
+    .document-wrapper label,
+    .document-wrapper legend,
+    .document-wrapper li,
+    .document-wrapper mark,
+    .document-wrapper menu,
+    .document-wrapper nav,
+    .document-wrapper object,
+    .document-wrapper ol,
+    .document-wrapper output,
+    .document-wrapper p,
+    .document-wrapper pre,
+    .document-wrapper q,
+    .document-wrapper ruby,
+    .document-wrapper s,
+    .document-wrapper samp,
+    .document-wrapper section,
+    .document-wrapper small,
+    .document-wrapper span,
+    .document-wrapper strike,
+    .document-wrapper strong,
+    .document-wrapper summary,
+    .document-wrapper table,
+    .document-wrapper tbody,
+    .document-wrapper td,
+    .document-wrapper tfoot,
+    .document-wrapper th,
+    .document-wrapper thead,
+    .document-wrapper time,
+    .document-wrapper tr,
+    .document-wrapper tt,
+    .document-wrapper u,
+    .document-wrapper ul,
+    .document-wrapper var,
+    .document-wrapper video {
+      all: unset;
+    }
+    .document-wrapper {
+      --document-inline-padding-top-bottom: 0.25em;
+      --document-inline-padding-left-right: 0.25em;
+      --header-1-font-size: 2em;
+      --header-2-font-size: 1.6em;
+      --header-3-font-size: 1.27em;
+      --document-hairline-width: calc(var(--document-text-size) / 15);
+      box-sizing: border-box;
+      color: var(--document-text-color);
+      font-family: var(--document-text-font);
+      font-size: var(--document-text-size);
+      line-height: var(--document-line-height-multiplier);
+      min-height: 100%;
+      max-width: 48em;
+      width: 100%;
+      tab-size: 4;
+      margin: 0 auto;
+      padding: 0 2em;
+    }
+    body {
+      text-rendering: optimizeLegibility;
+    }
+    .document-wrapper:focus-visible {
+      outline: 0;
+    }
+    .document-wrapper .marker {
+      color: var(--document-marker-color);
+      display: none;
+    }
+    .document-wrapper [data-direction="2"] {
+      direction: rtl;
+    }
+    .document-wrapper div.footnote,
+    .document-wrapper div.link-definition,
+    .document-wrapper p {
+      display: block;
+    }
+    .document-wrapper p.blank-line::before {
+      content: " ";
+    }
+    .document-wrapper h1,
+    .document-wrapper h2,
+    .document-wrapper h3,
+    .document-wrapper h4,
+    .document-wrapper h5,
+    .document-wrapper h6 {
+      font-family: var(--document-headers-font);
+      display: block;
+      line-height: var(--document-headers-line-height-multiplier);
+    }
+    .document-wrapper h1 {
+      font-size: var(--header-1-font-size);
+      padding-block-start: 0.8em;
+      padding-block-end: 0.33em;
+    }
+    .document-wrapper h2 {
+      font-size: var(--header-2-font-size);
+      padding-block-start: 0.66em;
+      padding-block-end: 0.27em;
+    }
+    .document-wrapper h3 {
+      font-size: var(--header-3-font-size);
+      padding-block-start: 0.53em;
+      padding-block-end: 0.27em;
+    }
+    .document-wrapper code,
+    .document-wrapper pre {
+      font-size: var(--document-code-text-size-multiplier);
+      font-family: var(--document-code-font), monospace;
+    }
+    .document-wrapper h4,
+    .document-wrapper h5,
+    .document-wrapper h6 {
+      padding-block-start: 0.4em;
+      padding-block-end: 0.27em;
+    }
+    .document-wrapper h1.setext {
+      margin-bottom: 0.45em;
+    }
+    .document-wrapper h2.setext {
+      margin-bottom: 0.2em;
+    }
+    .document-wrapper .fenced-code *,
+    .document-wrapper .fenced-code-content .marker,
+    .document-wrapper .fenced-code-content .space,
+    .document-wrapper .hard-linebreak-marker,
+    .document-wrapper .image .space,
+    .document-wrapper .image-destination,
+    .document-wrapper .image-label,
+    .document-wrapper .image-title,
+    .document-wrapper .indented-code .space,
+    .document-wrapper .link .space,
+    .document-wrapper .link-destination,
+    .document-wrapper .link-label,
+    .document-wrapper .link-title,
+    .document-wrapper .replace .text,
+    .document-wrapper .setext-heading-marker + .line-ending,
+    .document-wrapper .yaml-marker + .line-ending,
+    .document-wrapper li > p > .space:first-child,
+    .document-wrapper tr.delimiter-row {
+      display: none;
+    }
+    .document-wrapper ol,
+    .document-wrapper ul {
+      display: block;
+      padding-inline-start: 2.13em;
+    }
+    .document-wrapper li {
+      display: list-item;
+      color: var(--document-text-color);
+    }
+    .document-wrapper .color-marker,
+    .document-wrapper .entity-marker,
+    .document-wrapper .fenced-code-content,
+    .document-wrapper .fenced-code-content *,
+    .document-wrapper .footnote-separator,
+    .document-wrapper .link-definition-separator,
+    .document-wrapper code.code-inline,
+    .document-wrapper li > p {
+      display: inline;
+    }
+    .document-wrapper ul {
+      list-style-type: disc;
+    }
+    .document-wrapper li li li li li li li ul,
+    .document-wrapper li li li li li ul,
+    .document-wrapper li li li ul,
+    .document-wrapper li ul {
+      list-style: circle;
+    }
+    .document-wrapper li li li li li li ul,
+    .document-wrapper li li li li ul,
+    .document-wrapper li li ul {
+      list-style: disc;
+    }
+    .document-wrapper li::marker {
+      color: var(--document-list-marker-color);
+    }
+    .document-wrapper ol {
+      list-style-type: none;
+      counter-reset: custom-list-item calc(var(--data-list-start, 1) - 1);
+    }
+    .document-wrapper ol > li {
+      counter-increment: custom-list-item;
+      position: relative;
+    }
+    .document-wrapper ol > li::before {
+      content: counter(custom-list-item) ". ";
+      color: var(--document-list-marker-color);
+      position: absolute;
+      transform: translate(calc(-100% - 0.33em), 0);
+    }
+    .document-wrapper ol > li[data-big-number="true"] {
+      margin-inline-start: -2.05em;
+    }
+    .document-wrapper ol > li[data-big-number="true"]::before {
+      position: static;
+      padding-inline-end: 0.25em;
+    }
+    .document-wrapper ol > li[data-list-type="1"]:before {
+      content: counter(custom-list-item) ") ";
+    }
+    .document-wrapper [data-direction="2"] ol > li::before,
+    .document-wrapper ol[data-direction="2"] > li::before {
+      transform: translate(calc(100% + 0.33em), 0);
+    }
+    .document-wrapper li[role="checkbox"] {
+      list-style: none;
+      position: relative;
+    }
+    .document-wrapper li[aria-checked="true"] {
+      color: var(--document-text-secondary-color);
+    }
+    .document-wrapper .todo-checkbox {
+      display: inline-block;
+      margin-left: -1.7em;
+      margin-right: 0.5em;
+    }
+    .document-wrapper .todo-checkbox svg {
+      display: inline-block;
+      margin-bottom: -0.3em;
+    }
+    .document-wrapper blockquote {
+      display: block;
+      padding-inline-start: 2.13em;
+      position: relative;
+    }
+    .document-wrapper code,
+    .document-wrapper mark {
+      padding: var(--document-inline-padding-top-bottom)
+        var(--document-inline-padding-left-right);
+    }
+    .document-wrapper blockquote::before {
+      content: "";
+      position: absolute;
+      top: 0.2em;
+      left: 1em;
+      width: 0.13em;
+      height: calc(100% - 0.4em);
+      border: var(--document-hairline-width) solid
+        var(--document-list-marker-color);
+      border-radius: 0.33em;
+    }
+    .document-wrapper code,
+    .document-wrapper pre.fenced-code,
+    .document-wrapper pre.indented-code,
+    .document-wrapper pre.yaml {
+      color: var(--document-code-text-color);
+      background-color: var(--document-code-background-color);
+      border-radius: 0.25em;
+    }
+    .document-wrapper [data-direction="2"] blockquote::before,
+    .document-wrapper blockquote[data-direction="2"]::before {
+      left: 0;
+      right: 1em;
+    }
+    .document-wrapper
+      blockquote
+      blockquote
+      blockquote
+      blockquote
+      blockquote
+      blockquote::before,
+    .document-wrapper blockquote blockquote blockquote blockquote::before,
+    .document-wrapper blockquote blockquote::before {
+      background-color: transparent;
+    }
+    .document-wrapper hr {
+      display: block;
+      margin-block-start: calc(var(--document-line-height-multiplier) * 0.5em);
+      margin-block-end: calc(var(--document-line-height-multiplier) * -0.5em);
+      border-top: var(--document-hairline-width) solid
+        var(--document-separator-border-color);
+    }
+    .document-wrapper pre {
+      display: block;
+      white-space: pre-wrap;
+    }
+    .document-wrapper pre.indented-code {
+      padding-inline-start: 2.13em;
+    }
+    .document-wrapper pre.fenced-code,
+    .document-wrapper pre.yaml {
+      padding: 0 0.5em;
+    }
+    .document-wrapper .fenced-code::before {
+      content: "\200B";
+    }
+    .document-wrapper code {
+      font-weight: 400;
+      font-style: normal;
+      display: block;
+    }
+    .document-wrapper mark,
+    .document-wrapper mark code {
+      color: var(--document-text-color);
+      background-color: var(--document-highlighter-background-color);
+    }
+    .document-wrapper em,
+    .document-wrapper i {
+      font-family: AvenirNext-Italic;
+    }
+    .document-wrapper b,
+    .document-wrapper strong,
+    .document-wrapper th {
+      font-family: AvenirNext-Bold;
+    }
+    .document-wrapper mark {
+      unicode-bidi: embed;
+      border-radius: 0.25em;
+    }
+    .document-wrapper u {
+      text-decoration: underline;
+      text-decoration-color: var(--document-accent-color);
+      unicode-bidi: embed;
+    }
+    .document-wrapper s,
+    .document-wrapper strike {
+      text-decoration: line-through;
+    }
+    .document-wrapper a {
+      color: var(--document-link-color);
+      unicode-bidi: embed;
+      cursor: pointer;
+    }
+    .document-wrapper .wiki-separator-marker {
+      display: inline;
+      color: inherit;
+    }
+    .document-wrapper .link-definition-title {
+      color: var(--document-text-light-color);
+    }
+    .document-wrapper .footnote-ref {
+      font-size: 0.9em;
+      vertical-align: super;
+    }
+    .document-wrapper span.entity {
+      direction: ltr;
+      unicode-bidi: embed;
+      color: var(--document-code-syntax-highlight-entity);
+    }
+    .document-wrapper span.escape {
+      unicode-bidi: embed;
+    }
+    .document-wrapper .color {
+      font-family: var(--document-code-font), monospace;
+      font-size: var(--document-code-text-size-multiplier);
+      padding-inline-start: 1.2em;
+      position: relative;
+      direction: ltr;
+      unicode-bidi: embed;
+    }
+    .document-wrapper .color::before {
+      content: "";
+      position: absolute;
+      width: 0.9em;
+      height: 0.9em;
+      left: 0;
+      bottom: 0;
+      transform: translateY(-15%);
+      border: var(--document-hairline-width) solid rgb(0, 0, 0, 0.3);
+      border-radius: 0.9em;
+      background-color: var(--data-color);
+    }
+    .document-wrapper .hashtag {
+      color: var(--document-tag-text-color);
+      background-color: var(--document-tag-background-color);
+      border-radius: 1em;
+      padding: calc(
+          var(--document-inline-padding-top-bottom) - 2 *
+            var(--document-hairline-width)
+        )
+        calc(var(--document-inline-padding-left-right) + 0.3em);
+      unicode-bidi: embed;
+    }
+    .document-wrapper .hashtag > .marker {
+      display: inline;
+      color: var(--document-tag-marker-color);
+      padding: 0;
+    }
+    .document-wrapper table {
+      display: block;
+      max-width: fit-content;
+      overflow-x: auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      border: var(--document-hairline-width) solid
+        var(--document-table-border-color);
+      border-radius: 0.33em;
+      margin-bottom: calc(var(--document-line-height-multiplier) * 1em);
+    }
+    .document-wrapper table[data-direction="2"] {
+      margin-left: auto;
+      direction: ltr;
+    }
+    .document-wrapper tr {
+      display: table-row;
+      background-color: var(--document-table-cell-background-color);
+    }
+    .document-wrapper tr.header-row,
+    .document-wrapper tr:nth-child(odd) {
+      background-color: var(--document-table-cell-alternate-background-color);
+    }
+    .document-wrapper td,
+    .document-wrapper th {
+      box-sizing: border-box;
+      display: table-cell;
+      padding: 0.37em 0.75em;
+      min-width: 5em;
+      border-right: var(--document-hairline-width) solid
+        var(--document-table-border-color);
+    }
+    .document-wrapper td:last-of-type,
+    .document-wrapper th:last-of-type {
+      border: none;
+    }
+    .document-wrapper table[data-direction="2"] td {
+      margin-left: auto;
+    }
+    .document-wrapper td[data-alignment="2"] {
+      text-align: right;
+    }
+    .document-wrapper td[data-alignment="3"] {
+      text-align: center;
+    }
+    .document-wrapper .code_comment {
+      color: var(--document-code-syntax-highlight-comment);
+    }
+    .document-wrapper .code_constant {
+      color: var(--document-code-syntax-highlight-constant);
+    }
+    .document-wrapper .code_number {
+      color: var(--document-code-syntax-highlight-number);
+    }
+    .document-wrapper .code_string {
+      color: var(--document-code-syntax-highlight-string);
+    }
+    .document-wrapper .code_entity {
+      color: var(--document-code-syntax-highlight-entity);
+    }
+    .document-wrapper .code_keyword {
+      color: var(--document-code-syntax-highlight-keyword);
+    }
+    .document-wrapper .code_function {
+      color: var(--document-code-syntax-highlight-function);
+    }
+    .document-wrapper .code_variable {
+      color: var(--document-code-syntax-highlight-variable);
+    }
+    .document-wrapper img {
+      /* max-width: 100%; */
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100%;
+
+    }
+    .document-wrapper .pdf_preview {
+      display: inline-block;
+      width: 100%;
+      height: 500px;
+      background-color: #fff;
+      overflow: hidden;
+      padding: 0;
+      margin: 0;
+      position: relative;
+      border-radius: 4px;
+    }
+    .document-wrapper .arrow svg #body,
+    .document-wrapper .arrow svg #head {
+      fill: var(--base-text-color);
+    }
+    .document-wrapper .todo-checkbox svg #body {
+      stroke: var(--document-task-border-color);
+    }
+    .document-wrapper .todo-checkbox svg #check {
+      fill: var(--document-task-check-color);
+    }
+    .document-wrapper .todo-checkbox.todo-checked svg #body {
+      opacity: 0.35;
+    }
+    .document-wrapper .todo-checkbox.todo-checked svg #check {
+      opacity: 0.4;
+    }
+  </style>
+  <body>
+    <div class="document-wrapper">
+      <h1 id="How I built a loft in my NYC apartment">
+        How I built a loft in my NYC apartment
+      </h1>
+      <br />
+      <p>
+        <img
+          src="assets/img/IMG_2870.jpeg"
+          width="365.9999999999999"
+        />
+      </p>
+      <br />
+      <p>
+        In October my girlfriend and I made the move from Seattle to
+        NYC. But with both of us working from home… the realities of the
+        Manhattan housing market soon hit us.
+      </p>
+      <br />
+      <p>
+        Despite our best attempts at getting a place within our budget
+        big enough for living <i>and</i> working, what we really got was an
+        apartment with a room so small it barely fit a queen sized mattress.
+      </p>
+      <br />
+      <p>So I had to get creative.</p>
+      <br />
+      <p>
+        <img
+          src="assets/img/before.jpeg"
+          width="670"
+        />
+      </p>
+      <br />
+      <p>
+        Luckily,
+        <a href="https://michellelim.dev/writing/the-loft/"
+          >I had seen a blog post a looooong time ago about building a loft in
+          an NYC apartment</a
+        >. I thought that could be the solution to our problems.
+      </p>
+      <br />
+      <p>
+        It sounded great until… I remembered I had zero experience doing
+        <i>any</i> kind of DIY work. 
+      </p>
+      <br />
+      <p>
+        Also, I had no access to a woodshop (or
+        experience with power tools), and I didn’t know anyone in the city.
+      </p>
+      <br />
+      <p>So how was I going to figure this out?</p>
+      <br />
+      <p>
+        At first I thought I could hire someone to build it.
+        <a href="https://www.loftbuiltnyc.com/"
+          >Searching online, I found a guy named Hans who builds lofts in 
+          NYC</a
+        >, and I asked about his rates.
+      </p>
+      <br />
+      <p>
+        What he charged was way more than what I could afford. I panicked,
+        thinking that maybe this was going to be the end of the loft dream.
+      </p>
+      <br />
+      <p>
+        <img
+          src="assets/img/image.png"
+          width="280.5"
+        />
+      </p>
+      <br />
+      <p>
+        But then I had an idea: why not ask if he could teach me how to do it?
+      </p>
+      <br />
+      <p>
+        He said he was down, but he had one condition: he wanted to do
+        everything remotely.
+      </p>
+      <br />
+      <p>
+        Why? Well, Hans had been thinking about selling online courses on
+        loft building. And this was a good test of that idea.
+      </p>
+
+      <br />
+      <img
+        src="assets/img/kalm.png"
+        width="280.5"
+      />
+      <br /> 
+      <p>After that, we decided on October 28th being the first day to start building the loft.</p>
+
+      <br />
+
+      <p>I picked that day since my girlfriend was going to be gone on a week-long work trip, and I thought I could finish it before she got back as a surprise.</p>
+      <br />
+      <p>
+        This is the story of how I went from zero DIY experience to building a
+        loft alone in my apartment, with the help of a guy I'd never met giving me
+        instructions exclusively over texts and phone calls.
+      </p>
+      <br />
+      <br />
+      <p><b>Day 0: Planning it out</b></p>
+      <br />
+      <p>
+        The first step was Hans making a mockup of what the loft would look
+        like:
+        </p>
+      <br />
+      <img
+          src="assets/img/JPEG%20image-B9858A9233B0-1.jpeg"
+          width="462"
+      />
+      <p><i>I ended up positioning the ladder differently, but the mockup
+        is mostly accurate.
+      </i></p>
+      <br />
+      <p>
+        The loft was going to have a floating design without any legs. At first
+        I was worried about this, but now I can say that it’s really sturdy.
+      </p>
+      <br />
+      <p>
+        How is it stable?
+      </p>
+      <br />
+      <p>
+        Well, the frame is drilled into the metal
+        wall studs behind the drywall.
+        <a href="https://en.wikipedia.org/wiki/Wall_stud">Wall studs</a> are the
+        structural backbone of buildings, so drilling into the studs provides
+        lots of support — enough to hang a loft!
+      </p>
+      <br />
+      <p>
+        With the basic design created, it was time to hit Home Depot to get the
+        supplies.
+      </p>
+      <br />
+      <p><b>Day 1:</b> <b>Home depot</b></p>
+      <br />
+      <p>
+        <img
+          src="assets/img/home_depot.png"
+        />
+      </p>
+      <br />
+      <p>
+        On this day (a Saturday), I took the subway from the Upper East Side to
+        the Home Depot in Queens.
+        
+      </p>
+      <br />
+      <p>
+        Armed with a list of materials and cuts, I
+        went in to find everything.
+      </p>
+      <br />
+      <p>
+        Since this was my first time shopping at Home Depot… I was super lost.
+        It took <i>hours</i> to get everything. I had to text Hans a bunch just to make sure I got the right things.
+      </p>
+      <br />
+      <p>
+        Finally, once I bought everything I needed, I met a guy in the parking lot who
+        offered to take me home in his van.
+      </p>
+      <br />
+      <p>
+        Getting into a stranger’s van sounds crazy, but it’s New York! There’s
+        always people looking to make some cash, and since this was my only
+        option, I figured why not.
+      </p>
+      <br />
+      <p>
+        When I got back to my apartment I had to bring up the insane amount of
+        materials I got to my floor by myself.  
+      </p>
+      <br />
+      <p>For context: I live on the 6th floor of a
+        <i>no elevator</i> building, so this was no joke. I think it took me 10+ trips up and down
+        the stairs to bring everything up.
+      </p>
+      <br />
+      <p>
+        <img
+          src="assets/img/materials.png"
+          width="462"
+        />
+      </p>
+      <br />
+      <p>
+        By the end I was physically exhausted, but I was excited. I was
+        <i>really</i> doing this.
+      </p>
+      <br />
+      <p><b>Day 2:</b> <b>Starting construction</b></p>
+      <br />
+      <p>
+        The second day was all about marking the walls, double checking the
+        measurements, and cutting the wood.
+      </p>
+      <br />
+      <p>
+        This day was pretty discouraging. Because at the end of an entire Sunday
+        spent working on the loft, all I had was this:
+      </p>
+      <br />
+      <p>
+        <img
+          src="assets/img/day2.png"
+          width="462"
+        />
+      </p>
+      <br />
+      <p>It was a start.</p>
+      <br />
+      <p><b>Day 3: Building the frame</b></p>
+      <br />
+      <p>
+        This was a Monday. Because I’m starting a company, my work schedule is…
+        demanding. So I had to make a plan to get my work done and also work on the loft.
+      </p>
+      <br />
+      <p>My plan for the day was:</p>
+      <ul>
+        <li>Wake up early and work 9 am - 4 pm</li>
+        <li>Build the loft from 4 pm - 9 pm</li>
+        <li>Code more from 9 pm - 1 am</li>
+      </ul>
+      <br />
+      <p>
+        And that’s what I did. I ran that schedule that day and every day until the
+        loft was complete.
+      </p>
+      <br />
+      <p>
+        Day 3 was a lot more fun than the ones before it.
+      </p>
+      <br />
+        <p>This was when I started to feel like I was making progress because I got to build the frame and finally put something up on the wall!</p>
+      </p>
+      <br />
+      <p>By 9 pm, this is what I had:</p>
+      <br />
+      <p>
+        <img
+          src="assets/img/day3.png"
+        />
+      </p>
+      <br />
+      <p>It was starting to resemble a loft 🫡</p>
+      <br />
+      <p><b>Day 4: Building the platform</b></p>
+      <br />
+      <p>
+        This day was about building the platform, aka the area that the mattress
+        would rest on.
+      </p>
+      <br />
+      <p>Overall, this wasn't too bad. It was kind of precarious to get up there and drill in the platform pieces, but I managed to do it without falling off or getting hurt (woo!).</p>
+      <br />
+      <p>
+        By 9 pm, the platform was done:
+      </p>
+      <br />
+      <img
+        src="assets/img/platform.png"
+      />
+      <br />
+      <p>
+        As you can see, the wooden planks on top aren’t exactly
+        evenly spaced. This was a mistake on my part, where I did the
+        measurements wrong.
+      </p>
+      <br />
+      <p>Oh well.</p>
+      <br />
+      <p><b>Day 5: building the ladder & the railing</b></p>
+      <br />
+      <p>
+        At the start of day 5 I started to feel that the end was in sight: the only pieces left were the ladder & the railing!
+      </p>
+      <br />
+      <p>
+        Everything up until now was pretty straightforward, thanks to Hans’s advice and input. But this is the day I encountered the most challenging part: building the ladder.
+      </p>
+      <br />
+      <p>Because the ladder is leaning against the loft, the measurements were a
+        bit wonky, and took a couple of tries to get right. But once I got that down I added the railing and boom, the loft was complete.</p>
+      <br />
+      <p>
+        By 9 pm, this is what the loft looked like:
+      </p>
+      <br />
+      <img
+        src="assets/img/day5.png"
+        width="604"
+      />
+
+      <br /> 
+      <br />
+      <p>
+        One surprising fun fact is along the way I managed to get
+        <i>zero</i> noise complaints.</p>
+        
+      <br />
+      <p>I was drilling into walls, using an <a href="https://www.homedepot.com/p/RYOBI-15-Amp-10-in-Corded-Sliding-Compound-Miter-Saw-with-LED-Cutline-Indicator-TSS103/306939218">electric saw</a>
+        inside my apartment, and dropping things left and right. I should’ve
+        gotten a ton of complaints, but I managed to avoid them!
+      </p>
+      <br />
+      <p>
+        This was also the day I spent the first night sleeping up there. It was sturdy and
+        comfortable, and after some initial fears about the loft collapsing I realized it was pretty sound. 
+      </p>
+      <br />
+      <p>By this point, I had two days to spare
+        before my girlfriend got back from her work trip. I was really proud of myself and excited to show her the surprise.
+      </p>
+      <br />
+      <p><b>Bonus: the home office</b></p>
+      <br />
+      <p>Here’s a pic of what the loft looks like today:</p>
+      <br />
+      <p>
+        <img
+          src="assets/img/final.png"
+        />
+      </p>
+      <br />
+      <p>
+        And here’s a pic my girlfriend took of me (top) and my
+        cofounder Neo (at the desk) working when he came to visit.
+      </p>
+      <br />
+      <p>
+        <img
+          src="assets/img/IMG_3042.jpeg"
+        />
+      </p>
+      <br />
+      <p><b>Closing remarks</b></p>
+      <br />
+      <p>
+        I’m <i>super</i> happy with how the loft turned out. It added a <i>ton</i> of
+        space in our apartment, and now we really do have space to live
+        <i>and</i> work here.
+      </p>
+      <br />
+      <p>10/10 would recommend.</p>
+      <br />
+      <br />
+      <br />
+      <p><b>Footnote: the cost</b></p>
+      <br />
+      <p>
+        You’re probably curious about how much this cost. I bought everything I needed from Home Depot, and when I was finished I returned
+        everything I could.
+      </p>
+      <br />
+      <p>
+        Luckily, Home Depot has a great return policy and took back all the tools + spare
+        items with no questions asked.
+      </p>
+      <br />
+      <p>Here’s the cost breakdown:</p>
+      <br />
+      <table>
+        <tr>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+        <tr>
+          <td>Help from Hans</td>
+          <td>$300</td>
+        </tr>
+        <tr>
+          <td>Home depot materials (cost of things I didn’t return)</td>
+          <td>$283.78</td>
+        </tr>
+      </table>
+      <p><b>Total</b>: $583.78</p>
+      <br />
+      <p>
+        Not bad (imo). Especially when compared to paying for a
+        coworking space in the city.
+      </p>
+      <br />
+      <p>Nowadays I work in my apartment, the library, or coffee shops nearby. I really don't feel the need for a coworking space, so I think the cost was worth it!</p>
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+  </body>
+</html>
